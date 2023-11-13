@@ -1,6 +1,3 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package profile
 
 import (
@@ -17,9 +14,15 @@ var ProfileCmd = &cobra.Command{
 	},
 }
 
+func addSubCommands() {
+	ProfileCmd.AddCommand(ProfileListCmd)
+	ProfileCmd.AddCommand(ProfileAddCmd)
+}
+
 func init() {
 
 	// Here you will define your flags and configuration settings.
+	// ProfileCmd.Flags().StringVar()
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
@@ -28,4 +31,6 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// profileCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	addSubCommands()
 }

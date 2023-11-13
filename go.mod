@@ -1,4 +1,4 @@
-module github.com/fagom/git-context
+module github.com/fagom/gitc
 
 go 1.21.0
 

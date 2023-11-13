@@ -1,12 +1,12 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
+	"fmt"
 	"os"
 
-	"github.com/fagom/git-context/cmd/profile"
+	"github.com/fagom/gitc/cmd/hosts"
+	"github.com/fagom/gitc/cmd/profile"
+	. "github.com/fagom/gitc/services"
 	"github.com/spf13/cobra"
 )
 
@@ -30,20 +30,22 @@ to quickly create a Cobra application.`,
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
+		fmt.Println(err)
 		os.Exit(1)
 	}
 }
 
 func addSubCommands() {
 	rootCmd.AddCommand(profile.ProfileCmd)
+	rootCmd.AddCommand(hosts.HostsCmd)
 }
 
 func init() {
+	GetConfig()
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.git-context.yaml)")
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.

@@ -1,10 +1,6 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
-*/
 package main
 
-import "github.com/fagom/git-context/cmd"
+import "github.com/fagom/gitc/cmd"
 
 func main() {
 	cmd.Execute()
