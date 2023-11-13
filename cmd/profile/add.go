@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"os"
 
+	. "github.com/fagom/gitc/internal"
 	. "github.com/fagom/gitc/models"
-	// . "github.com/fagom/gitc/services"
+
 	"github.com/spf13/cobra"
 )
 
@@ -17,13 +18,13 @@ var ProfileAddCmd = &cobra.Command{
 	Long:  `The command lets you add a git profile reference in your host machine.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		// Add logic here
-
 		data := []User{
 			User{
 				PassKey: password,
 				Host:    host,
 			},
 		}
+		Logger.Println("testing")
 
 		// CheckUserAuthKey(data)
 

@@ -6,9 +6,11 @@ import (
 
 	"github.com/fagom/gitc/cmd/hosts"
 	"github.com/fagom/gitc/cmd/profile"
-	. "github.com/fagom/gitc/services"
+	. "github.com/fagom/gitc/internal"
 	"github.com/spf13/cobra"
 )
+
+var logger *os.File
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -20,9 +22,6 @@ examples and usage of using your application. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -33,6 +32,8 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
+	defer logger.Close()
 }
 
 func addSubCommands() {
@@ -41,7 +42,8 @@ func addSubCommands() {
 }
 
 func init() {
-	GetConfig()
+	BuildConfiguration()
+	logger = OpenLogger()
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
